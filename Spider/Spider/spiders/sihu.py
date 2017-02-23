@@ -5,6 +5,7 @@ from scrapy.spider import Spider
 from scrapy.http import Request  
 from scrapy.selector import Selector  
 from Spider.items import SpiderItem
+import pymongo
 
 class SihuSpider(scrapy.Spider):
    # download_delay = 1  
@@ -17,15 +18,21 @@ class SihuSpider(scrapy.Spider):
         item=SpiderItem();
         html=response.xpath('//a/@href').extract()
         
-        
+        clinet = pymongo.MongoClient("localhost", 27017)
+        db = clinet["sihu"]
        
         for h in html:
             if h.endswith('mp4'):
+                if (db['mp4'].find({"mp4":h}).count()==0):
+                    item['mp4']=h;
+                    print h
+                    yield item
+                    yield SpiderItem
+                else:
+                    print 'already in'
+
               #  print '``````````````get MP4``````````````````'
-                print h
-                item['mp4']=h;
-                yield item
-                yield SpiderItem
+               # 
             else:
                 url='https://www.27sihu.com'+h
                # print url
