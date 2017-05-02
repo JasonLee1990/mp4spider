@@ -25,11 +25,11 @@ class SihuSpider(scrapy.Spider):
             if h.endswith('mp4'):
                 if (db['mp4'].find({"mp4":h}).count()==0):
                     item['mp4']=h;
-                    print h
+                    print (h)
                     yield item
                     yield SpiderItem
                 else:
-                    print 'already in'
+                    print ('already in')
 
               #  print '``````````````get MP4``````````````````'
                # 

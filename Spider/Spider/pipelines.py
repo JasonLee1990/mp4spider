@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
 from scrapy.conf import settings
-from items import SpiderItem
+from .items import SpiderItem
 
 class SpiderPipeline(object):
     #def process_item(self, item, spider):
