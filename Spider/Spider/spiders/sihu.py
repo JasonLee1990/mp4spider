@@ -11,7 +11,7 @@ class SihuSpider(scrapy.Spider):
    # download_delay = 1  
     name = "sihu"
     allowed_domains = ["www.27sihu.com"]
-    start_urls = ['https://www.27sihu.com/']
+    start_urls = ['https://www.27sihu.com/','https://www.480r.com']
     items = []
     def parse(self, response):
         sel = Selector(response)  
